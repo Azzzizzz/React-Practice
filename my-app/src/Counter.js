@@ -1,6 +1,6 @@
 import React from "react";
 
-class CounterC extends React.Component {
+class Counter extends React.Component {
   state = { count: 0 };
 
   onBtnClicked = () => {
@@ -16,4 +16,4 @@ class CounterC extends React.Component {
     );
   }
 }
-export default CounterC;
+export default Counter;
