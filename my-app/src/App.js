@@ -1,32 +1,19 @@
-import './App.css';
-
-
-
-
-function Counter() {
-  let count = 0
-  return (
-    <div>
-      
-      <h1>Count - {count}</h1>
-    <button>++</button>
-    </div>
-
-  )
-}
-
-
+import React from "react";
+import Counter from "./Counter";
+import SpecialCounter from "./SpecialCounter";
 
 function App() {
   return (
     <div className="App">
       <div>
-        <h1>Hello React</h1>
-        <Counter/>
-    </div>
+        <Counter />
+        <SpecialCounter count={100} />
+        <SpecialCounter count={10} />
+        <SpecialCounter count={134} />
+        <SpecialCounter count={133} />
+      </div>
     </div>
   );
- 
 }
 
 export default App;
