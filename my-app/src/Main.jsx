@@ -8,9 +8,9 @@ function Main() {
   }
   return (
     <div>
-      <Counter />
+      {/* <Counter />
       <SpecialCounter count={2} />
-      <Callback onNotify={notify} />
+      <Callback onNotify={notify} /> */}
     </div>
   );
 }
