@@ -9,6 +9,7 @@ import Home from "./Home";
 import About from "./About";
 import Contact from "./Contact";
 import NotFound from "./NotFound";
+import UserById from "./UserById";
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
+          <Route path="/users/:id" component={UserById} />
           <Route path="/users" component={Users} />
           {/* If user enters gives invalid url */}
           {/* <Redirect to="/" />  */}
