@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function User(props) {
   const { user } = props;
@@ -6,10 +7,16 @@ export default function User(props) {
   return (
     <>
       <div
-        className="card"
-        style={{ width: "18rem", display: "inline-block", margin: "1rem" }}
+        className="card shadow p-3 mb-5 bg-white rounded"
+        style={{
+          width: "18rem",
+          display: "inline-block",
+          margin: "1rem",
+          border: "none",
+        }}
       >
         <img
+          style={{ objectFit: "cover" }}
           width="200"
           height="200"
           className="card-img-top"
@@ -21,13 +28,10 @@ export default function User(props) {
         />
         <div className="card-body">
           <h5 className="card-title">{user.login}</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-          <a href="#" className="btn btn-primary">
-            {user.type}
-          </a>
+          <p className="card-text"></p>
+          <Link to={`/users/${user.login}`} className="btn btn-primary">
+            Select
+          </Link>
         </div>
       </div>
     </>

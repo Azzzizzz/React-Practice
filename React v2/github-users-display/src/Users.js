@@ -1,16 +1,16 @@
 import axios from "axios";
 import React, { Component } from "react";
 import User from "./User";
+import LoaderImg from "./img/loading.gif";
 
 export default class Users extends Component {
-  state = { users: [] };
+  state = { users: [], loading: true };
   constructor() {
     super();
     axios
       .get("https://api.github.com/users")
       .then((res) => {
-        console.log(res.data);
-        this.setState({ users: res.data });
+        this.setState({ users: res.data, loading: false });
       })
       .catch((e) => console.log(e));
   }
@@ -19,6 +19,7 @@ export default class Users extends Component {
     return (
       <div>
         <h1> Github Users</h1>
+        {this.state.loading === true ? <img src={LoaderImg} alt="" /> : null}
         {this.state.users.map((user) => {
           return <User user={user} />;
         })}

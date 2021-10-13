@@ -1,20 +1,22 @@
 import axios from "axios";
 import React, { Component } from "react";
+import LoaderImg from "./img/loading.gif";
 
 export default class UserById extends Component {
-  state = { user: {} };
+  state = { user: {}, laoding: true };
   constructor(props) {
     super();
     const id = props.match.params.id;
     axios
       .get(`https://api.github.com/users/${id}`)
-      .then((res) => this.setState({ user: res.data }))
+      .then((res) => this.setState({ user: res.data, laoding: false }))
       .catch((e) => console.log(e));
   }
   render() {
     const { user } = this.state;
     return (
       <div>
+        {this.state.laoding === true ? <img src={LoaderImg} alt="" /> : null}
         <h1>User by ID </h1>
         <div
           className="card"
@@ -28,10 +30,14 @@ export default class UserById extends Component {
             alt=""
           />
           <div className="card-body">
-            <h5 className="card-title">{user.login}</h5>
-            <p className="card-text">
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+            <h4 className="card-title">{user.name}</h4>
+            <h6 className="card-title">Github Username: {user.login}</h6>
+            <p className="card-text">{user.location}</p>
+            <p>
+              Following <span class="badge bg-danger">{user.following}</span>
+            </p>
+            <p>
+              Follwers <span class="badge bg-secondary">{user.followers}</span>
             </p>
             <a href="#" className="btn btn-primary">
               {user.type}
