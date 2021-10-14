@@ -6,15 +6,23 @@ import User from "./User";
 
 export default class Users extends Component {
   state = { users: [], loading: true, hasError: false };
-  constructor() {
-    super();
-    axios
-      .get("https://api.github.com/users")
-      .then((res) => {
-        this.setState({ users: res.data, loading: false });
-      })
-      .catch((e) => this.setState({ hasError: true, loading: false }));
-  }
+  componentDidMount = async () => {
+    try {
+      const response = await axios.get("https://api.github.com/users");
+      this.setState({ users: response.data, loading: false });
+    } catch (e) {
+      this.setState({ hasError: true, loading: false });
+    }
+  };
+  // constructor() {
+  //   super();
+  //   axios
+  //     .get("https://api.github.com/users")
+  //     .then((res) => {
+  //       this.setState({ users: res.data, loading: false });
+  //     })
+  //     .catch((e) => this.setState({ hasError: true, loading: false }));
+  // }
 
   render() {
     return (
