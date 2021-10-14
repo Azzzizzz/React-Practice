@@ -1,22 +1,23 @@
 import axios from "axios";
 import React, { Component } from "react";
-import LoaderImg from "./img/loading.gif";
+import Loader from "./Loader";
 
 export default class UserById extends Component {
-  state = { user: {}, laoding: true };
+  state = { user: {}, loading: true };
   constructor(props) {
     super();
     const id = props.match.params.id;
     axios
       .get(`https://api.github.com/users/${id}`)
-      .then((res) => this.setState({ user: res.data, laoding: false }))
-      .catch((e) => console.log(e));
+      .then((res) => this.setState({ user: res.data, loading: false }))
+      .catch((e) => ({ loading: false }));
   }
   render() {
     const { user } = this.state;
     return (
       <div>
-        {this.state.laoding === true ? <img src={LoaderImg} alt="" /> : null}
+        <Loader loading={this.state.loading} />
+
         <h1>User by ID </h1>
         <div
           className="card"

@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
+import Loader from "./Loader";
 import User from "./User";
-import LoaderImg from "./img/loading.gif";
 
 export default class Users extends Component {
   state = { users: [], loading: true };
@@ -12,14 +12,15 @@ export default class Users extends Component {
       .then((res) => {
         this.setState({ users: res.data, loading: false });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => this.setState({ loading: false }));
   }
 
   render() {
     return (
       <div>
         <h1> Github Users</h1>
-        {this.state.loading === true ? <img src={LoaderImg} alt="" /> : null}
+        <Loader loading={this.state.loading} />
+
         {this.state.users.map((user) => {
           return <User user={user} />;
         })}
