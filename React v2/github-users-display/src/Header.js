@@ -31,6 +31,9 @@ export default function Header() {
               <Link class="nav-link" to="/Users">
                 Users
               </Link>
+              <Link class="nav-link" to="/Books">
+                Books
+              </Link>
               <Link class="nav-link" to="/Contact">
                 Contact
               </Link>
