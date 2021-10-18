@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Book from "./Book";
+import Error from "./util/Error";
+import Loader from "./util/Loader";
 
 export default function Books() {
   const [books, setBooks] = useState([]);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(async () => {
     try {
@@ -12,9 +16,12 @@ export default function Books() {
       );
       console.log(res.data);
       setBooks(res.data);
+      setLoading(false);
+      setError(false);
     } catch (e) {
-      // TODO: error handling
-      console.log(e);
+      setError(true);
+      setBooks([]);
+      setLoading(false);
     }
   }, []);
 
@@ -32,6 +39,9 @@ export default function Books() {
   return (
     <>
       <h1>Books Component</h1>
+      <Loader loading={loading} />
+      <Error show={error} />
+
       {books.map((book) => (
         <Book book={book} />
       ))}
