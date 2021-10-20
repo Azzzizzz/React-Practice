@@ -28,13 +28,25 @@ export default function Books() {
 
   return (
     <>
-      <h1>Books Component</h1>
-      <Loader loading={loading} />
-      <Error show={error} />
-
-      {books.map((book) => (
-        <Book book={book} />
-      ))}
+      <div class="container">
+        <h1>Books Component</h1>
+        <Loader loading={loading} />
+        <Error show={error} />
+        <div class="col-8">
+          <table className="table table-hover table-bordered ">
+            <thead>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Price</th>
+            </thead>
+            <tbody>
+              {books.map((book) => (
+                <Book book={book} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
 
       {/* {error ? <Error show={error} /> : (
         { books.map(book => { return <Book book={book} /> })}
