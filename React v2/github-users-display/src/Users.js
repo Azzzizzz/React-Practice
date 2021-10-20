@@ -9,7 +9,7 @@ export default class Users extends Component {
   componentDidMount = async () => {
     try {
       const response = await axios.get("https://api.github.com/users");
-      this.setState({ users: response.data, loading: true });
+      this.setState({ users: response.data, loading: false });
     } catch (e) {
       this.setState({ hasError: true, loading: false });
     }

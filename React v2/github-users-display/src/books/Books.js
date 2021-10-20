@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import Book from "./Book";
-import Error from "./util/Error";
-import Loader from "./util/Loader";
+import Error from "../util/Error";
+import Loader from "../util/Loader";
 
 export default function Books() {
   const [books, setBooks] = useState([]);
@@ -15,26 +15,16 @@ export default function Books() {
         "https://my-node-api-demo-2.herokuapp.com/api/books"
       );
       console.log(res.data);
-      setBooks(res.data);
+      setBooks(res.data.books);
       setLoading(false);
       setError(false);
     } catch (e) {
+      console.log("error occured");
       setError(true);
       setBooks([]);
       setLoading(false);
     }
   }, []);
-
-  //   useEffect(async () => {
-  //     try {
-  //       const res = axios.get(
-  //         "https://my-node-api-demo-2.herokuapp.com/api/books"
-  //       );
-  //       console.log(res.data);
-  //     } catch (e) {
-  //       console.log("Error");
-  //     }
-  //   }, []);
 
   return (
     <>
@@ -45,6 +35,10 @@ export default function Books() {
       {books.map((book) => (
         <Book book={book} />
       ))}
+
+      {/* {error ? <Error show={error} /> : (
+        { books.map(book => { return <Book book={book} /> })}
+      )} */}
     </>
   );
 }

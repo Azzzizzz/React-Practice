@@ -10,7 +10,8 @@ import About from "./About";
 import Contact from "./Contact";
 import NotFound from "./NotFound";
 import UserById from "./UserById";
-import Books from "./Books";
+import Books from "./books/Books";
+import NewBook from "./books/NewBook";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/contact" component={Contact} />
           <Route path="/users/:id" component={UserById} />
           <Route path="/users" component={Users} />
+          <Route path="/books/NewBook" component={NewBook} />
           <Route path="/books" component={Books} />
 
           {/* If user enters gives invalid url */}
